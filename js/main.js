@@ -17,4 +17,37 @@ function loaded()
 		}
 	});
 
+	$("#btnStart").click(function() {
+		window.alert("Full game coming soon!")
+	});
+
+	$("#btnRandom").click(getRandomQuestion);
+
+
+
 }
+
+function getRandomQuestion()
+{
+	$("p").html("");
+
+	$.ajax({
+		url:"http://jService.io/api/random",
+		dataType:"json",
+		success: function(results){
+			log(results);
+			$("#pCategory").html(results[0].category.title);
+			$("#pQuestion").html(results[0].question);
+			$("#btnAnswer").click(function() {
+				$("#pAnswer").html(results[0].answer);
+			});
+		}
+	});
+
+}
+
+
+
+
+
+

@@ -98,14 +98,7 @@ textarea {
    ========================================================================== */
 
 
-p {
-	color: blue;
-	margin: 5px;
-	cursor: pointer;
-}
-p:hover {
-	background: yellow;
-}
+
 th, td, tr {
 	color: gold;
 	background-color: darkblue;
@@ -119,9 +112,11 @@ td:hover{
 table {
 	border: 2px solid black;
 	background-color: black;
-
+	margin: auto;
 }
-
+#temp {
+	margin: auto;
+}
 
 
 
