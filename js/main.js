@@ -17,9 +17,7 @@ function loaded()
 		}
 	});
 
-	$("#btnStart").click(function() {
-		window.alert("Full game coming soon!")
-	});
+	$("#btnStart").click(getCategories);
 
 	$("#btnRandom").click(getRandomQuestion);
 
@@ -45,6 +43,92 @@ function getRandomQuestion()
 	});
 
 }
+
+
+function getCategories()
+{
+	log("Getting 6 categories");
+	$.ajax({
+		url:"http://jService.io/api/categories",
+		dataType:"json",
+		type:"get",
+		data: {
+			count: 6,
+			offset: Math.floor(Math.random()*Math.random()*1000)//Attempting to get a random set of questions
+		},
+		success: function(results){
+			getCategoryQuestions(results);
+		},
+		error: function(xhr, textStatus, errorThrown){
+			log(textStatus);
+			log(errorThrown);
+			log(xhr);
+		}
+	});
+}
+
+function getCategoryQuestions(categories)
+{
+	log("Getting questions");
+	categories.forEach(function(item, index){
+		$.ajax({
+			url:"http://jService.io/api/category",
+			dataType:"json",
+			type:"get",
+			data: {
+				id: item.id
+			},
+			success: function(result) {
+				log("success");
+				populateBoard(result, index);
+			},
+			error: function(xhr, textStatus, errorThrown){
+				log(textStatus);
+				log(errorThrown);
+				log(xhr);
+			}
+		});
+	});
+}
+
+function populateBoard(category, number)
+{
+	log(number);
+	log(category);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
