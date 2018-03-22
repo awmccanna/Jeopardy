@@ -112,6 +112,15 @@ td:hover{
 table {
 	border: 2px solid black;
 	background-color: black;
+	margin:auto;
+}
+#wrapper {
+	position: relative;
+}
+#questionArea {
+	background-color: darkblue;
+	color: gold;
+	display: table;
 	margin: auto;
 }
 #temp {

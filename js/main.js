@@ -13,9 +13,12 @@ function loaded()
 		var value = (index * 200) + 200;
 		for(var i = 0; i<6; i++)
 		{
-			$(this).append('<td>'+value+'</td>');
+			$(this).append('<td id="c'+i+'" class="cell">'+value+'</td>');
 		}
 	});
+
+
+
 
 	$("#btnStart").click(getCategories);
 
@@ -79,7 +82,6 @@ function getCategoryQuestions(categories)
 				id: item.id
 			},
 			success: function(result) {
-				log("success");
 				populateBoard(result, index);
 			},
 			error: function(xhr, textStatus, errorThrown){
@@ -89,12 +91,32 @@ function getCategoryQuestions(categories)
 			}
 		});
 	});
+
+	$(".cell").click(function ()
+	{
+
+		$("#questionArea").html("Question goes here!");
+		$(this).html("");
+		//This next think kind of works, but seems to take multiple button clicks and just acts weird in general, revisit later
+		//$(this).contents().wrap("<div class='temporary'>").fadeOut('fast').text("Question goes here!").delay(1000).fadeIn('fast');
+
+	});
 }
 
+
+/*
+
+ */
 function populateBoard(category, number)
 {
-	log(number);
+	//log(category);
+	var table = document.getElementById("jBoard");
+	var rows = table.getElementsByTagName("tr");
 	log(category);
+	log(rows[1].children[number]);
+	rows[0].children[number].innerHTML = category.title;
+	//rows[1].children[number].innerHTML = category.clues[0].question;
+
 }
 
 
